@@ -12,7 +12,7 @@ import org.coody.framework.core.bean.InitBeanFace;
 import org.coody.framework.core.util.StringUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 
-//@AutoBuild
+@AutoBuild
 public class ImportDatabase implements InitBeanFace {
 
 	Logger logger = Logger.getLogger(ImportDatabase.class);
