@@ -19,6 +19,7 @@
 		<log4j.version>1.2.9</log4j.version>
 		<fastjson.version>1.2.62</fastjson.version>
 		<cglib.version>3.2.9</cglib.version>
+		<coody.version>alpha-1.2.9</coody.version>
 	</properties>
 
 	<dependencies>
@@ -40,27 +41,27 @@
 		<dependency>
 			<groupId>org.coody.framework</groupId>
 			<artifactId>coody-web-for-minicat</artifactId>
-			<version>alpha-1.2.9</version>
+			<version>${coody.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.coody.framework</groupId>
 			<artifactId>coody-cache</artifactId>
-			<version>alpha-1.2.9</version>
+			<version>${coody.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.coody.framework</groupId>
 			<artifactId>coody-jdbc</artifactId>
-			<version>alpha-1.2.9</version>
+			<version>${coody.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.coody.framework</groupId>
 			<artifactId>coody-mail</artifactId>
-			<version>alpha-1.2.9</version>
+			<version>${coody.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.coody.framework</groupId>
 			<artifactId>coody-task</artifactId>
-			<version>alpha-1.2.9</version>
+			<version>${coody.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
