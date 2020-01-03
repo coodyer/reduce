@@ -2,7 +2,7 @@ package org.coody.reduce.domain;
 
 import java.util.Date;
 
-import org.coody.framework.jdbc.model.DBModel;
+import org.coody.framework.jdbc.entity.DBModel;
 
 @SuppressWarnings("serial")
 public class EmailQueue extends DBModel {

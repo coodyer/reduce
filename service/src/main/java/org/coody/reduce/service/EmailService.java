@@ -80,7 +80,7 @@ public class EmailService {
 		queue.setTitle("Reduce 验证邮件");
 		queue.setContext("您的验证码是：" + code);
 		queue.setTargeEmail(targe);
-		queue.setUnionId(EncryptUtil.md5Code(queue.getTitle() + "_" + queue.getContext() + "_" + queue.getTargeEmail()
+		queue.setUnionId(EncryptUtil.md5(queue.getTitle() + "_" + queue.getContext() + "_" + queue.getTargeEmail()
 				+ "_" + DateUtils.getDateString()));
 		Long result = jdbcProcessor.insert(queue);
 		if (result < 1) {
