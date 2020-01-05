@@ -6,16 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.log4j.Logger;
 import org.coody.framework.core.annotation.AutoBuild;
 import org.coody.framework.core.bean.InitBeanFace;
+import org.coody.framework.core.util.LogUtil;
 import org.coody.framework.core.util.StringUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 
 //@AutoBuild
 public class ImportDatabase implements InitBeanFace {
-
-	Logger logger = Logger.getLogger(ImportDatabase.class);
 
 	@AutoBuild
 	JdbcProcessor jdbcProcessor;
@@ -63,7 +61,7 @@ public class ImportDatabase implements InitBeanFace {
 			if (tables.contains(table)) {
 				continue;
 			}
-			logger.info("初始化数据表>>" + table);
+			LogUtil.log.info("初始化数据表>>" + table);
 			jdbcProcessor.update(INIT_DATABASE.get(table));
 		}
 
