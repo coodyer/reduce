@@ -5,11 +5,9 @@ import java.util.List;
 
 import org.coody.framework.cache.instance.LocalCache;
 import org.coody.framework.core.annotation.AutoBuild;
-import org.coody.framework.core.annotation.LogFlag;
 import org.coody.framework.core.model.BaseModel;
 import org.coody.framework.core.util.DateUtils;
 import org.coody.framework.core.util.EncryptUtil;
-import org.coody.framework.core.util.LogUtil;
 import org.coody.framework.core.util.StringUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 import org.coody.framework.jdbc.annotation.Transacted;
@@ -91,9 +89,7 @@ public class EmailService {
 		return true;
 	}
 
-	@LogFlag("查询未发送的邮件")
 	public List<EmailQueue> getEmailQueues() {
-		LogUtil.log.info("查询未发送的邮件");
 		Where where = new Where();
 		where.set("status", 0);
 		where.set("millisecond", ">", System.currentTimeMillis() - (1000 * 60 * 1));
