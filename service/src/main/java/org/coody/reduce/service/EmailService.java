@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.coody.framework.cache.instance.LocalCache;
 import org.coody.framework.core.annotation.AutoBuild;
+import org.coody.framework.core.annotation.LogFlag;
 import org.coody.framework.core.model.BaseModel;
 import org.coody.framework.core.util.DateUtils;
 import org.coody.framework.core.util.EncryptUtil;
+import org.coody.framework.core.util.LogUtil;
 import org.coody.framework.core.util.StringUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 import org.coody.framework.jdbc.annotation.Transacted;
@@ -80,8 +82,8 @@ public class EmailService {
 		queue.setTitle("Reduce 验证邮件");
 		queue.setContext("您的验证码是：" + code);
 		queue.setTargeEmail(targe);
-		queue.setUnionId(EncryptUtil.md5(queue.getTitle() + "_" + queue.getContext() + "_" + queue.getTargeEmail()
-				+ "_" + DateUtils.getDateString()));
+		queue.setUnionId(EncryptUtil.md5(queue.getTitle() + "_" + queue.getContext() + "_" + queue.getTargeEmail() + "_"
+				+ DateUtils.getDateString()));
 		Long result = jdbcProcessor.insert(queue);
 		if (result < 1) {
 			return false;
@@ -89,7 +91,9 @@ public class EmailService {
 		return true;
 	}
 
+	@LogFlag("查询未发送的邮件")
 	public List<EmailQueue> getEmailQueues() {
+		LogUtil.log.info("查询未发送的邮件");
 		Where where = new Where();
 		where.set("status", 0);
 		where.set("millisecond", ">", System.currentTimeMillis() - (1000 * 60 * 1));

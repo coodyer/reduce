@@ -46,7 +46,28 @@ public class UserController extends BaseController {
 		user.setEmail(vo.getEmail());
 		user.setPassword(vo.getPassword());
 		user.setStatus(0);
-		Long code = userService.saveUserInfo(user);
+		Long code = userService.addUserInfo(user);
+		if (code < 1) {
+			return ResultCode.E_500_SYS_BUSY.toMsgEntity();
+		}
+		String token = JUUIDUtil.createUuid();
+		LoginEntity wrapper = new LoginEntity();
+		wrapper.setUserId(user.getId());
+		localCache.setCache(CacheConstant.USER_TOKEN + token, wrapper, 60 * 30);
+		return ResultCode.E_200_SUCCESS.toMsgEntity(token);
+	}
+
+	@PathBinding("/resetPwd")
+	public Object resetPwd(UserCreateVO vo) {
+		boolean isChecked = emailService.checkCode(vo.getEmail(), vo.getCode());
+		if (!isChecked) {
+			return ResultCode.E_1003_CODE_ERROR.toMsgEntity();
+		}
+		UserInfo user = userService.getUserInfo(vo.getEmail());
+		if (user == null) {
+			return ResultCode.E_1005_MAIL_NOT_EXISTS.toMsgEntity();
+		}
+		Long code = userService.modifyUserInfo(user, "password");
 		if (code < 1) {
 			return ResultCode.E_500_SYS_BUSY.toMsgEntity();
 		}
@@ -61,13 +82,13 @@ public class UserController extends BaseController {
 	public Object login(UserLoginVO vo) {
 		UserInfo user = userService.getUserInfo(vo.getEmail());
 		if (user == null) {
-			return ResultCode.E_1005_USER_NOT_EXISTS.toMsgEntity();
+			return ResultCode.E_1005_MAIL_NOT_EXISTS.toMsgEntity();
 		}
 		if (!vo.getPassword().equals(user.getPassword())) {
 			return ResultCode.E_1006_PASS_ERROR.toMsgEntity();
 		}
 		if (user.getStatus() == 0) {
-			//return ResultCode.E_1008_USER_UNAVABLE.toMsgEntity();
+			// return ResultCode.E_1008_USER_UNAVABLE.toMsgEntity();
 		}
 		if (user.getStatus() != 1) {
 //			return ResultCode.E_1009_USER_FROZEN.toMsgEntity();
@@ -78,6 +99,5 @@ public class UserController extends BaseController {
 		localCache.setCache(CacheConstant.USER_TOKEN + token, wrapper, 60 * 30);
 		return ResultCode.E_200_SUCCESS.toMsgEntity(token);
 	}
-
 
 }

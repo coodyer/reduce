@@ -19,7 +19,7 @@ public enum ResultCode {
 	// 编码
 	E_1006_PASS_ERROR(1006, "密码不正确"),
 	// 编码
-	E_1005_USER_NOT_EXISTS(1005, "用户不存在"),
+	E_1005_MAIL_NOT_EXISTS(1005, "邮箱不存在"),
 	// 编码
 	E_1004_MAIL_EXISTS(1004, "邮箱已使用"),
 	// 编码
