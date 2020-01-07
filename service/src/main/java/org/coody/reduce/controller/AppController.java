@@ -63,7 +63,7 @@ public class AppController extends BaseController {
 	public Object list() {
 		List<AppInfo> apps = appService.getAppInfos(getCurrentUserId());
 		if (StringUtil.isNullOrEmpty(apps)) {
-			return ResultCode.E_500_SYS_BUSY.toMsgEntity();
+			return ResultCode.E_404_NOT_DATAS.toMsgEntity();
 		}
 		return ResultCode.E_200_SUCCESS.toMsgEntity(apps);
 	}
