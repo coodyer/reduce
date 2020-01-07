@@ -1,17 +1,20 @@
 package reduce;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.coody.framework.core.util.DateUtils;
+import org.coody.framework.Cson;
+import org.coody.reduce.domain.UserInfo;
 
 public class Test {
 
 	public static void main(String[] args) {
-
-		Date time = DateUtils.toDate("2019-01-04 12:32:11");
-		time = DateUtils.change(time, Calendar.DAY_OF_YEAR, 200);
-		System.out.println(DateUtils.toString(time,"yyyy-MM-dd"));
+		UserInfo user = new UserInfo();
+		user.setId(10010);
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put(1, user);
+		map.put(2, user);
+		System.out.println(Cson.toJson(map));
 	}
 
 }
