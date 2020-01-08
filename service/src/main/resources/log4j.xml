@@ -7,7 +7,7 @@
 		class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
-				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n " />
+				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n" />
 		</layout>
 	</appender>
 	<!--class定义日志记录器 -->
@@ -21,7 +21,7 @@
 		<param name="Encoding" value="UTF8" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
-				value="[%p] [%d{MM-dd hh\:mm\:ss}] [%c] [%m] %n" />
+				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n" />
 		</layout>
 		<!--过滤器设置输出的级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
@@ -35,9 +35,9 @@
 		<param name="File" value="reduce_info.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF8" />
-		<layout class="org.apache.log4j.PatternLayout">
+				<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
-				value="[%p] [%d{MM-dd hh\:mm\:ss}] [%c] [%m] %n" />
+				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n" />
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="INFO" />
@@ -50,9 +50,9 @@
 		<param name="File" value="reduce_warn.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF8" />
-		<layout class="org.apache.log4j.PatternLayout">
+				<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
-				value="[%p] [%d{MM-dd hh\:mm\:ss}] [%c] [%m] %n" />
+				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n" />
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="WARN" />
@@ -65,9 +65,9 @@
 		<param name="File" value="reduce_error.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF8" />
-		<layout class="org.apache.log4j.PatternLayout">
+				<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
-				value="[%p] [%d{MM-dd hh\:mm\:ss}] [%c] [%m] %n" />
+				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n" />
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="ERROR" />
