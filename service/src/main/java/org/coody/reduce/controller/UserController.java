@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.coody.framework.cache.instance.LocalCache;
 import org.coody.framework.core.annotation.AutoBuild;
-import org.coody.framework.core.util.JUUIDUtil;
+import org.coody.framework.core.util.uuid.JUUIDUtil;
 import org.coody.framework.minicat.web.adapter.JsonMealAdapter;
 import org.coody.framework.minicat.web.annotation.JsonOut;
 import org.coody.framework.minicat.web.annotation.ParamsAdapt;

@@ -1,7 +1,7 @@
 package org.coody.reduce.controller;
 
 import org.coody.framework.core.annotation.AutoBuild;
-import org.coody.framework.core.util.StringUtil;
+import org.coody.framework.core.util.CommonUtil;
 import org.coody.framework.minicat.http.iface.MinicatServletResponse;
 import org.coody.framework.minicat.web.annotation.PathBinding;
 import org.coody.framework.minicat.web.annotation.TextOut;
@@ -12,7 +12,7 @@ import org.coody.reduce.service.ShortService;
 import org.coody.reduce.service.UserService;
 
 @PathBinding("/")
-public class ReduceController extends BaseController{
+public class ReduceController extends BaseController {
 
 	@AutoBuild
 	UserService userService;
@@ -21,7 +21,7 @@ public class ReduceController extends BaseController{
 
 	@PathBinding("/{code}")
 	public void trigger(String code) {
-		if (StringUtil.isNullOrEmpty(code)) {
+		if (CommonUtil.isNullOrEmpty(code)) {
 			return;
 		}
 		Long id = PECode.decode(code);

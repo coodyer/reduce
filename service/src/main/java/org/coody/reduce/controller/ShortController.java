@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.coody.framework.core.annotation.AutoBuild;
-import org.coody.framework.core.util.PropertUtil;
-import org.coody.framework.core.util.StringUtil;
+import org.coody.framework.core.util.CommonUtil;
+import org.coody.framework.core.util.reflex.PropertUtil;
 import org.coody.framework.jdbc.entity.Pager;
 import org.coody.framework.minicat.web.annotation.JsonOut;
 import org.coody.framework.minicat.web.annotation.PathBinding;
@@ -31,7 +31,7 @@ public class ShortController extends BaseController {
 	@PathBinding("/create")
 	public Object create(String unionId, String url) {
 		AppInfo app = appService.getAppInfo(unionId);
-		if (StringUtil.isNullOrEmpty(app)) {
+		if (CommonUtil.isNullOrEmpty(app)) {
 			return ResultCode.E_1001_APP_EXISTS.toMsgEntity();
 		}
 		if (app.getStatus() != 1) {
@@ -52,7 +52,7 @@ public class ShortController extends BaseController {
 	@PathBinding("/del")
 	public Object del(Long id) {
 		ShortInfo shorter = shortService.getShortInfo(id);
-		if (StringUtil.isNullOrEmpty(shorter) || shorter.getUserId() != getCurrentUserId().intValue()) {
+		if (CommonUtil.isNullOrEmpty(shorter) || shorter.getUserId() != getCurrentUserId().intValue()) {
 			return ResultCode.E_403_NOT_EXISTS.toMsgEntity();
 		}
 		Long code = shortService.del(id);
@@ -73,7 +73,7 @@ public class ShortController extends BaseController {
 		}
 		shorter.setUserId(getCurrentUserId());
 		pager = shortService.getPager(pager, shorter);
-		if (!StringUtil.isNullOrEmpty(pager.getData())) {
+		if (!CommonUtil.isNullOrEmpty(pager.getData())) {
 			List<ShortInfoDTO> shortDTOs = PropertUtil.getNewList(pager.getData(), ShortInfoDTO.class);
 			for (ShortInfoDTO dto : shortDTOs) {
 				String shortUrl = request.getBasePath() + "/" + PECode.encode(dto.getId());

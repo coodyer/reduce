@@ -6,9 +6,9 @@ import java.util.List;
 import org.coody.framework.cache.instance.LocalCache;
 import org.coody.framework.core.annotation.AutoBuild;
 import org.coody.framework.core.model.BaseModel;
-import org.coody.framework.core.util.DateUtils;
-import org.coody.framework.core.util.EncryptUtil;
-import org.coody.framework.core.util.StringUtil;
+import org.coody.framework.core.util.date.DateUtils;
+import org.coody.framework.core.util.encrypt.EncryptUtil;
+import org.coody.framework.core.util.random.RandomUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 import org.coody.framework.jdbc.annotation.Transacted;
 import org.coody.framework.jdbc.entity.Pager;
@@ -43,7 +43,7 @@ public class EmailService {
 	}
 
 	public String createCode(String email) {
-		Integer code = StringUtil.getRanDom(1000, 9999);
+		Integer code = RandomUtil.random(1000, 9999);
 		String key = CacheConstant.EMAIL_CODE + email;
 
 		CodeWrapper wrapper = new CodeWrapper();

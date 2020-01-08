@@ -4,7 +4,7 @@ import org.coody.framework.cache.instance.LocalCache;
 import org.coody.framework.core.annotation.Around;
 import org.coody.framework.core.annotation.AutoBuild;
 import org.coody.framework.core.model.AspectPoint;
-import org.coody.framework.core.util.StringUtil;
+import org.coody.framework.core.util.CommonUtil;
 import org.coody.framework.minicat.http.iface.MinicatServletRequest;
 import org.coody.reduce.common.annotation.LoginCheck;
 import org.coody.reduce.common.constants.CacheConstant;
@@ -23,7 +23,7 @@ public class LoginAspect {
 	@Around(annotationClass = LoginCheck.class)
 	public Object loginCheck(AspectPoint point) throws Throwable {
 		String token = request.getHeader().get("token");
-		if (StringUtil.isNullOrEmpty(token)) {
+		if (CommonUtil.isNullOrEmpty(token)) {
 			return ResultCode.E_405_TIME_OUT.toMsgEntity();
 		}
 		LoginEntity wrapper = localCache.getCache(CacheConstant.USER_TOKEN + token);

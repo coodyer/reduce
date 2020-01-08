@@ -8,8 +8,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.coody.framework.core.annotation.AutoBuild;
 import org.coody.framework.core.bean.InitBeanFace;
-import org.coody.framework.core.util.LogUtil;
-import org.coody.framework.core.util.StringUtil;
+import org.coody.framework.core.util.CommonUtil;
+import org.coody.framework.core.util.log.LogUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 
 //@AutoBuild
@@ -52,7 +52,7 @@ public class ImportDatabase implements InitBeanFace {
 	public void init() throws Exception {
 		List<Map<String, Object>> results = jdbcProcessor.query("show tables");
 		List<String> tables = new ArrayList<String>();
-		if (!StringUtil.isNullOrEmpty(results)) {
+		if (!CommonUtil.isNullOrEmpty(results)) {
 			for (Map<String, Object> map : results) {
 				tables.add(map.get("table_name").toString().toLowerCase());
 			}

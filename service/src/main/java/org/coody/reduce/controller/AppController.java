@@ -3,8 +3,8 @@ package org.coody.reduce.controller;
 import java.util.List;
 
 import org.coody.framework.core.annotation.AutoBuild;
-import org.coody.framework.core.util.JUUIDUtil;
-import org.coody.framework.core.util.StringUtil;
+import org.coody.framework.core.util.CommonUtil;
+import org.coody.framework.core.util.uuid.JUUIDUtil;
 import org.coody.framework.minicat.web.adapter.JsonMealAdapter;
 import org.coody.framework.minicat.web.annotation.JsonOut;
 import org.coody.framework.minicat.web.annotation.ParamsAdapt;
@@ -27,7 +27,7 @@ public class AppController extends BaseController {
 	@PathBinding("/save")
 	@ParamsAdapt(JsonMealAdapter.class)
 	public Object save(AppCreateVO vo) {
-		if (!StringUtil.isNullOrEmpty(vo.getId())) {
+		if (!CommonUtil.isNullOrEmpty(vo.getId())) {
 			AppInfo app = appService.getAppInfo(vo.getId());
 			Integer userId = getCurrentUserId();
 			if (app == null || userId != app.getUserId().intValue()) {
@@ -36,7 +36,7 @@ public class AppController extends BaseController {
 		}
 		AppInfo app = new AppInfo();
 		app.setId(vo.getId());
-		app.setName(vo.getName());	
+		app.setName(vo.getName());
 		app.setStatus(0);
 		app.setUnionId(JUUIDUtil.createUuid());
 		app.setUserId(getCurrentUserId());
@@ -62,7 +62,7 @@ public class AppController extends BaseController {
 	@PathBinding("/list")
 	public Object list() {
 		List<AppInfo> apps = appService.getAppInfos(getCurrentUserId());
-		if (StringUtil.isNullOrEmpty(apps)) {
+		if (CommonUtil.isNullOrEmpty(apps)) {
 			return ResultCode.E_404_NOT_DATAS.toMsgEntity();
 		}
 		return ResultCode.E_200_SUCCESS.toMsgEntity(apps);

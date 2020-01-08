@@ -3,7 +3,7 @@ package org.coody.reduce.service;
 import org.coody.framework.cache.annotation.CacheWipe;
 import org.coody.framework.cache.annotation.CacheWrite;
 import org.coody.framework.core.annotation.AutoBuild;
-import org.coody.framework.core.util.PropertUtil;
+import org.coody.framework.core.util.reflex.PropertUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 import org.coody.framework.jdbc.util.JdbcUtil;
 import org.coody.reduce.common.constants.CacheConstant;

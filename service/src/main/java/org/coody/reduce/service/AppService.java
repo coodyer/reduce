@@ -6,7 +6,7 @@ import java.util.List;
 import org.coody.framework.cache.annotation.CacheWipe;
 import org.coody.framework.cache.annotation.CacheWrite;
 import org.coody.framework.core.annotation.AutoBuild;
-import org.coody.framework.core.util.StringUtil;
+import org.coody.framework.core.util.CommonUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 import org.coody.framework.jdbc.util.JdbcUtil;
 import org.coody.reduce.common.constants.CacheConstant;
@@ -27,7 +27,7 @@ public class AppService {
 	@CacheWipe(key = CacheConstant.APP_LIST, fields = "app.userId")
 	@CacheWipe(key = CacheConstant.APP_INFO, fields = "app.id")
 	public Long saveAppInfo(AppInfo app) {
-		if (StringUtil.isNullOrEmpty(app.getId())) {
+		if (CommonUtil.isNullOrEmpty(app.getId())) {
 			return jdbcProcessor.insert(app);
 		}
 		return jdbcProcessor.updateByPriKey(app, "id");
