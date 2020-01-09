@@ -19,7 +19,7 @@ public class BaseController {
 	protected LocalCache localCache;
 
 	protected Integer getCurrentUserId() {
-		String token = request.getHeader().get("token");
+		String token = request.getCookie("token");
 		LoginEntity wrapper = localCache.getCache(CacheConstant.USER_TOKEN + token);
 		if (wrapper == null) {
 			return null;
