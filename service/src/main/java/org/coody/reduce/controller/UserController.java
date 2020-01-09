@@ -54,6 +54,7 @@ public class UserController extends BaseController {
 		LoginEntity wrapper = new LoginEntity();
 		wrapper.setUserId(user.getId());
 		localCache.setCache(CacheConstant.USER_TOKEN + token, wrapper, 60 * 30);
+		response.setCookie("token", token);
 		return ResultCode.E_200_SUCCESS.toMsgEntity(token);
 	}
 
@@ -75,6 +76,7 @@ public class UserController extends BaseController {
 		LoginEntity wrapper = new LoginEntity();
 		wrapper.setUserId(user.getId());
 		localCache.setCache(CacheConstant.USER_TOKEN + token, wrapper, 60 * 30);
+		response.setCookie("token", token);
 		return ResultCode.E_200_SUCCESS.toMsgEntity(token);
 	}
 
@@ -97,6 +99,7 @@ public class UserController extends BaseController {
 		LoginEntity wrapper = new LoginEntity();
 		wrapper.setUserId(user.getId());
 		localCache.setCache(CacheConstant.USER_TOKEN + token, wrapper, 60 * 30);
+		response.setCookie("token", token);
 		return ResultCode.E_200_SUCCESS.toMsgEntity(token);
 	}
 

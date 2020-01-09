@@ -22,7 +22,7 @@ public class LoginAspect {
 
 	@Around(annotationClass = LoginCheck.class)
 	public Object loginCheck(AspectPoint point) throws Throwable {
-		String token = request.getHeader().get("token");
+		String token = request.getCookie("token");
 		if (CommonUtil.isNullOrEmpty(token)) {
 			return ResultCode.E_405_TIME_OUT.toMsgEntity();
 		}

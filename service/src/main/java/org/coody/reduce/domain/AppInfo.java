@@ -18,7 +18,7 @@ public class AppInfo extends DBModel {
 	private Date createTime;
 
 	/**
-	 * 状态 -1冻结 0待审核 1正常
+	 * 状态 -1冻结 0待审核 1正常 2暂停
 	 */
 	private Integer status;
 
