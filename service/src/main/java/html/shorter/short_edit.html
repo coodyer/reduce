@@ -31,8 +31,8 @@
 		<div class="tpl-content-wrapper">
 			<ol class="am-breadcrumb">
 				<li><a href="#" class="am-icon-home">首页</a></li>
-				<li><a href="#">应用管理</a></li>
-				<li class="am-active">应用编辑</li>
+				<li><a href="#">短域管理</a></li>
+				<li class="am-active">短域编辑</li>
 			</ol>
 			<div class="tpl-portlet-components">
 				<div class="portlet-title">
@@ -53,16 +53,26 @@
 						<div class="tpl-form-body tpl-form-line">
 							<form class="am-form tpl-form-line-form" id="dataForm" onsubmit="return false">
 								<div class="am-form-group">
-									<label for="user-name" class="am-u-sm-3 am-form-label">应用名称
-										<span class="tpl-form-line-small-title">Title</span>
+									<label for="user-phone" class="am-u-sm-3 am-form-label">选择应用</label>
+									<div class="am-u-sm-9">
+										<select name="appId" id="appList">
+											<option value="a">-The.CC</option>
+											<option value="b">夕风色</option>
+											<option value="o">Orange</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="am-form-group">
+									<label for="user-name" class="am-u-sm-3 am-form-label">原始地址
 									</label>
 									<div class="am-u-sm-9">
 										<input name="id" id="dataId" type="hidden" value="" /> <input type="text"
-											class="tpl-form-input" id="name" name="name" placeholder="请输入标题文字">
-										<small>请填写应用名称</small>
+											class="tpl-form-input" id="url" name="url" placeholder="请输入长链地址">
+										<small>请填写长链地址</small>
 									</div>
 								</div>
-								<div class="am-form-group" id="statusContainer" style="display: none">
+								<div class="am-form-group" id="statusContainer">
 									<label for="user-intro" class="am-u-sm-3 am-form-label">是否启用</label>
 									<div class="am-u-sm-9">
 										<div class="tpl-switch" onclick="checkOpenPorject()">
@@ -102,6 +112,7 @@
 			if (id != null && id != '') {
 				loadInfo(id);
 			}
+			loadApps();
 		});
 		function checkOpenPorject() {
 			if ($("#openPorjectCheck").is(':checked')) {
@@ -111,7 +122,7 @@
 			}
 		}
 		function loadInfo(id) {
-			$.get(config.server + "/app/info?id=" + id, function (data) {
+			$.get(config.server + "/short/info?id=" + id, function (data) {
 				if (data.code != 200) {
 					return;
 				}
@@ -119,16 +130,13 @@
 				if (data.datas.status == 1) {
 					$("#openPorjectCheck").attr("checked", true);
 				}
-				$("#name").val(data.datas.name);
+				$("#url").val(data.datas.url);
 				checkOpenPorject();
-				if (data.datas.status > 0) {
-					$("#statusContainer").show();
-				}
 				$("#dataId").val(data.datas.id);
 			}, 'json');
 		}
 		function save() {
-			$.post(config.server + "/app/save",
+			$.post(config.server + "/short/save",
 				form2JsonString($("#dataForm")), function (data) {
 					if (data.code == 200) {
 						history.back();
@@ -137,6 +145,18 @@
 					alert(data.msg);
 					return;
 				}, "json");
+		}
+		function loadApps() {
+			$.get(config.server + "/app/list", function (data) {
+				if (data.code != 200) {
+					return;
+				}
+				$("#appList").html("");
+				for (var index in data.datas) {
+					var html="<option value='"+data.datas[index].id+"'>"+data.datas[index].name+"</option>";
+					$("#appList").append(html);
+				}
+			}, 'json');
 		}
 	</script>
 </body>

@@ -45,7 +45,7 @@ public class UserController extends BaseController {
 		user.setCreateTime(new Date());
 		user.setEmail(vo.getEmail());
 		user.setPassword(vo.getPassword());
-		user.setStatus(0);
+		user.setStatus(1);
 		Long code = userService.addUserInfo(user);
 		if (code < 1) {
 			return ResultCode.E_500_SYS_BUSY.toMsgEntity();
@@ -90,10 +90,10 @@ public class UserController extends BaseController {
 			return ResultCode.E_1006_PASS_ERROR.toMsgEntity();
 		}
 		if (user.getStatus() == 0) {
-			// return ResultCode.E_1008_USER_UNAVABLE.toMsgEntity();
+			 return ResultCode.E_1008_USER_UNAVABLE.toMsgEntity();
 		}
 		if (user.getStatus() != 1) {
-//			return ResultCode.E_1009_USER_FROZEN.toMsgEntity();
+			return ResultCode.E_1009_USER_FROZEN.toMsgEntity();
 		}
 		String token = JUUIDUtil.createUuid();
 		LoginEntity wrapper = new LoginEntity();

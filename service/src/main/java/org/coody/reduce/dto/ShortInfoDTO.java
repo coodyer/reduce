@@ -3,9 +3,19 @@ package org.coody.reduce.dto;
 import org.coody.reduce.domain.ShortInfo;
 
 @SuppressWarnings("serial")
-public class ShortInfoDTO extends ShortInfo{
+public class ShortInfoDTO extends ShortInfo {
+
+	private String appName;
 
 	private String shortUrl;
+
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
 
 	public String getShortUrl() {
 		return shortUrl;
@@ -15,5 +25,4 @@ public class ShortInfoDTO extends ShortInfo{
 		this.shortUrl = shortUrl;
 	}
 
-	
 }

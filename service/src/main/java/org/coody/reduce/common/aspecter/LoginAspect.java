@@ -1,5 +1,7 @@
 package org.coody.reduce.common.aspecter;
 
+import java.util.Date;
+
 import org.coody.framework.cache.instance.LocalCache;
 import org.coody.framework.core.annotation.Around;
 import org.coody.framework.core.annotation.AutoBuild;
@@ -29,6 +31,10 @@ public class LoginAspect {
 		LoginEntity wrapper = localCache.getCache(CacheConstant.USER_TOKEN + token);
 		if (wrapper == null) {
 			return ResultCode.E_405_TIME_OUT.toMsgEntity();
+		}
+		if (wrapper.getActivityTime().getTime() < System.currentTimeMillis() - 1000 * 60 * 10) {
+			wrapper.setActivityTime(new Date());
+			localCache.setCache(CacheConstant.USER_TOKEN + token, wrapper, 60 * 30);
 		}
 		return point.invoke();
 	}

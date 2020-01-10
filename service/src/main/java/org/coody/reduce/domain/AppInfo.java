@@ -2,13 +2,15 @@ package org.coody.reduce.domain;
 
 import java.util.Date;
 
+import org.coody.framework.jdbc.annotation.DBVague;
 import org.coody.framework.jdbc.entity.DBModel;
 
 @SuppressWarnings("serial")
 public class AppInfo extends DBModel {
 
 	private Integer id;
-	
+
+	@DBVague
 	private String name;
 
 	private Integer userId;
@@ -46,7 +48,6 @@ public class AppInfo extends DBModel {
 		this.userId = userId;
 	}
 
-
 	public String getUnionId() {
 		return unionId;
 	}
@@ -70,8 +71,5 @@ public class AppInfo extends DBModel {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	
-	
-	
 
 }

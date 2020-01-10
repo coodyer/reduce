@@ -16,6 +16,15 @@
 	<link rel="stylesheet" href="../assets/css/amazeui.min.css" />
 	<link rel="stylesheet" href="../assets/css/admin.css">
 	<link rel="stylesheet" href="../assets/css/app.css">
+	<style>
+		tr td {
+			text-overflow: ellipsis;
+			-moz-text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			text-align: left
+		}
+	</style>
 </head>
 
 <body data-type="generalComponents">
@@ -29,11 +38,11 @@
 		<div class="tpl-content-wrapper">
 			<ol class="am-breadcrumb">
 				<li><a href="#" class="am-icon-home">首页</a></li>
-				<li><a href="#">应用管理</a></li>
-				<li class="am-active">应用列表</li>
+				<li><a href="#">短域管理</a></li>
+				<li class="am-active">短域列表</li>
 			</ol>
 			<div class="tpl-portlet-components">
-				<form onsubmit="return false" id="dataForm">
+				<form id="dataForm" onsubmit="return false">
 					<div class="portlet-title">
 						<div class="caption font-green bold">
 							<span class="am-icon-code"></span> 列表
@@ -42,18 +51,18 @@
 							<div class="portlet-input input-small input-inline">
 								<div class="input-icon right">
 									<i class="am-icon-search"></i> <input type="text"
-										class="form-control form-control-solid" placeholder="搜索...">
+										class="form-control form-control-solid">
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div class="tpl-block">
 						<div class="am-g">
 							<div class="am-u-sm-12 am-u-md-6">
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
-										<button type="button" class="am-btn am-btn-default am-btn-success"
-											onclick="location.href='app_edit.html'">
+										<button type="button" class="am-btn am-btn-default am-btn-success">
 											<span class="am-icon-plus"></span> 新增
 										</button>
 									</div>
@@ -61,9 +70,8 @@
 							</div>
 							<div class="am-u-sm-12 am-u-md-3">
 								<div class="am-input-group am-input-group-sm">
-									<input type="text" class="am-form-field" name="name"> <span
-										class="am-input-group-btn">
-										<button onclick="loadApps()"
+									<input type="text" class="am-form-field"> <span class="am-input-group-btn">
+										<button
 											class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search"
 											type="button"></button>
 									</span>
@@ -75,23 +83,29 @@
 								<table class="am-table am-table-striped am-table-hover table-main">
 									<thead>
 										<tr>
+											<th class="table-check"><input type="checkbox" class="tpl-table-fz-check">
+											</th>
 											<th class="table-id">ID</th>
-											<th class="table-title">应用名</th>
-											<th class="table-type">UnionId</th>
-											<th class="table-author am-hide-sm-only">状态</th>
+											<th class="table-title">所属应用</th>
+											<th class="table-type">短链地址</th>
+											<th class="table-author am-hide-sm-only">原始地址</th>
+											<th class="table-author am-hide-sm-only">访问次数</th>
 											<th class="table-date am-hide-sm-only">创建时间</th>
 											<th class="table-set">操作</th>
 										</tr>
 										<tr id="lineTemplate" style="display: none">
+											<td><input type="checkbox"></td>
 											<td>${id}</td>
-											<td>${name}</td>
-											<td>${unionId}</td>
-											<td>${status}</td>
+											<td>${appName}</td>
+											<td>${shortUrl}</td>
+											<td style="max-width:30%">${url}</td>
+											<td>${frequency}</td>
 											<td class="am-hide-sm-only">${createTime}</td>
+											<td class="am-hide-sm-only">${status}</td>
 											<td>
 												<div class="am-btn-toolbar">
 													<div class="am-btn-group am-btn-group-xs">
-														<button onclick="location.href='app_edit.html?id=${id}'"
+														<button onclick="location.href='short_edit.html?id=${id}'"
 															class="am-btn am-btn-default am-btn-xs am-text-secondary">
 															<span class="am-icon-pencil-square-o"></span> 编辑
 														</button>
@@ -108,9 +122,11 @@
 									</tbody>
 								</table>
 								<hr>
+
 							</div>
 
 						</div>
+
 					</div>
 					<div class="tpl-alert"></div>
 				</form>
@@ -124,13 +140,13 @@
 	<script src="../assets/js/common.js"></script>
 	<script>
 		$(function () {
-			loadApps();
+			loadShorts();
 		});
 		function del(id) {
 			if (!confirm("数据删除后将无法恢复,确定执行此操作?")) {
 				return;
 			}
-			$.post(config.server + "/app/del", { id: id }, function (data) {
+			$.post(config.server + "/short/del", { id: id }, function (data) {
 				if (data.code == 200) {
 					location.reload();
 					return;
@@ -138,29 +154,30 @@
 				alert(data.msg);
 			}, 'json');
 		}
-		function loadApps() {
-			$.post(config.server + "/app/list", form2JsonString($("#dataForm")), function (data) {
-				$("#dataBody").html("");
+		function loadShorts() {
+			$.post(config.server + "/short/page", form2JsonString($("#dataForm")), function (data) {
 				if (data.code != 200) {
 					return;
 				}
-				for (var index in data.datas) {
-					var line = data.datas[index];
+				var pager = data.datas;
+				if (pager.count == 0) {
+					return;
+				}
+				for (var index in pager.data) {
+					var line = pager.data[index];
 					console.info(line);
 					var html = '<tr>';
 					var template = $("#lineTemplate").html();
 					template = template.replace(new RegExp('\\$\\{id\\}', "g"), line.id);
-					template = template.replace(new RegExp('\\$\\{name\\}', "g"), line.name);
-					template = template.replace(new RegExp('\\$\\{unionId\\}', "g"), line.unionId);
-					var status = '已冻结';
-					if (line.status == 0) {
-						status = '待审核';
-					}
+					template = template.replace(new RegExp('\\$\\{appName\\}', "g"), line.appName);
+					template = template.replace(new RegExp('\\$\\{shortUrl\\}', "g"), line.shortUrl);
+					template = template.replace(new RegExp('\\$\\{url\\}', "g"), line.url);
+					template = template.replace(new RegExp('\\$\\{frequency\\}', "g"), line.frequency);
+
+
+					var status = '已停用';
 					if (line.status == 1) {
 						status = '正常';
-					}
-					if (line.status == 2) {
-						status = '已停用';
 					}
 					template = template.replace(new RegExp('\\$\\{status\\}', "g"), status);
 					template = template.replace(new RegExp('\\$\\{createTime\\}', "g"), formatTimeStamp(line.createTime));

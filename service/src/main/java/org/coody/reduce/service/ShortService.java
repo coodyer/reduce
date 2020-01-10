@@ -5,6 +5,7 @@ import java.text.MessageFormat;
 import org.coody.framework.cache.annotation.CacheWipe;
 import org.coody.framework.cache.annotation.CacheWrite;
 import org.coody.framework.core.annotation.AutoBuild;
+import org.coody.framework.core.util.CommonUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 import org.coody.framework.jdbc.entity.Pager;
 import org.coody.framework.jdbc.util.JdbcUtil;
@@ -20,6 +21,14 @@ public class ShortService {
 	@CacheWrite(key = CacheConstant.SHORT_INFO, fields = "id", time = 72000)
 	public ShortInfo getShortInfo(Long id) {
 		return jdbcProcessor.findBeanFirst(ShortInfo.class, "id", id);
+	}
+
+	@CacheWipe(key = CacheConstant.SHORT_INFO, fields = "info.id")
+	public Long saveShortInfo(ShortInfo info) {
+		if (CommonUtil.isNullOrEmpty(info.getId())) {
+			return jdbcProcessor.insert(info);
+		}
+		return jdbcProcessor.updateByPriKey(info, "id");
 	}
 
 	public Long addShortInfo(ShortInfo info) {

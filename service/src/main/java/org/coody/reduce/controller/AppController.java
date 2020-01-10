@@ -27,17 +27,20 @@ public class AppController extends BaseController {
 	@PathBinding("/save")
 	@ParamsAdapt(JsonMealAdapter.class)
 	public Object save(AppCreateVO vo) {
+		AppInfo app = new AppInfo();
+		app.setStatus(1);
 		if (!CommonUtil.isNullOrEmpty(vo.getId())) {
-			AppInfo app = appService.getAppInfo(vo.getId());
+			app = appService.getAppInfo(vo.getId());
 			Integer userId = getCurrentUserId();
 			if (app == null || userId != app.getUserId().intValue()) {
 				return ResultCode.E_403_NOT_EXISTS.toMsgEntity();
 			}
+			if (app.getStatus() > 0) {
+				app.setStatus(vo.getStatus());
+			}
 		}
-		AppInfo app = new AppInfo();
 		app.setId(vo.getId());
 		app.setName(vo.getName());
-		app.setStatus(0);
 		app.setUnionId(JUUIDUtil.createUuid());
 		app.setUserId(getCurrentUserId());
 		Long code = appService.saveAppInfo(app);
@@ -60,8 +63,13 @@ public class AppController extends BaseController {
 
 	@LoginCheck
 	@PathBinding("/list")
-	public Object list() {
-		List<AppInfo> apps = appService.getAppInfos(getCurrentUserId());
+	@ParamsAdapt(JsonMealAdapter.class)
+	public Object list(AppInfo app) {
+		if (app == null) {
+			app = new AppInfo();
+		}
+		app.setUserId(getCurrentUserId());
+		List<AppInfo> apps = appService.getAppInfos(app);
 		if (CommonUtil.isNullOrEmpty(apps)) {
 			return ResultCode.E_404_NOT_DATAS.toMsgEntity();
 		}

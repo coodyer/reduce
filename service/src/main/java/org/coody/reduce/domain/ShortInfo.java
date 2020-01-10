@@ -5,20 +5,41 @@ import java.util.Date;
 import org.coody.framework.jdbc.entity.DBModel;
 
 @SuppressWarnings("serial")
-public class ShortInfo extends DBModel{
+public class ShortInfo extends DBModel {
 
 	private Long id;
-	
+
 	private Integer userId;
-	
+
 	private String url;
-	
+
 	private Long frequency;
-	
+
+	private Integer appId;
+
+	/**
+	 * 1正常 2已停用
+	 */
+	private Integer status;
+
 	private Date createTime;
 
-	
-	
+	public Integer getAppId() {
+		return appId;
+	}
+
+	public void setAppId(Integer appId) {
+		this.appId = appId;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -58,7 +79,5 @@ public class ShortInfo extends DBModel{
 	public void setFrequency(Long frequency) {
 		this.frequency = frequency;
 	}
-	
-
 
 }

@@ -12,7 +12,7 @@ import org.coody.framework.core.util.CommonUtil;
 import org.coody.framework.core.util.log.LogUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
 
-//@AutoBuild
+@AutoBuild
 public class ImportDatabase implements InitBeanFace {
 
 	@AutoBuild
@@ -36,7 +36,8 @@ public class ImportDatabase implements InitBeanFace {
 					+ "  `createTime` datetime DEFAULT CURRENT_TIMESTAMP,\r\n" + "  `status` int(2) DEFAULT '0',\r\n"
 					+ "  PRIMARY KEY (`id`) ,\r\n" + "  UNIQUE KEY `app_uk` (`unionId`)  USING BTREE\r\n" + ") ;");
 			put("short_info", "CREATE TABLE `short_info` (\r\n" + "  `id` bigint(32) NOT NULL AUTO_INCREMENT,\r\n"
-					+ "  `frequency` bigint(32) NOT NULL DEFAULT 0,\r\n" + "  `userId` int(11) DEFAULT NULL,\r\n"
+					+ "  `frequency` bigint(32) NOT NULL DEFAULT 0,\r\n" + "  `status` tinyint(4) DEFAULT '1',\r\n"
+					+ "  `appId` int(11) DEFAULT NULL,\r\n" + "  `userId` int(11) DEFAULT NULL,\r\n"
 					+ "  `url` varchar(255) DEFAULT NULL,\r\n"
 					+ "  `createTime` datetime DEFAULT CURRENT_TIMESTAMP,\r\n" + "  PRIMARY KEY (`id`) \r\n" + ");");
 			put("user_info",

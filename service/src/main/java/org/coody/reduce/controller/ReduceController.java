@@ -29,7 +29,7 @@ public class ReduceController extends BaseController {
 			return;
 		}
 		ShortInfo info = shortService.getShortInfo(id);
-		if (info == null) {
+		if (info == null || info.getStatus() != 1) {
 			return;
 		}
 		response.sendRedirect(info.getUrl());

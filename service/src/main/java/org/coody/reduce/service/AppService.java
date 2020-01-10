@@ -40,6 +40,11 @@ public class AppService {
 		return jdbcProcessor.update(sql, app.getId());
 	}
 
+	@CacheWrite(time = 3)
+	public List<AppInfo> getAppInfos(AppInfo app) {
+		return jdbcProcessor.findBean(app);
+	}
+
 	@CacheWrite(key = CacheConstant.APP_LIST, fields = "userId", time = 72000)
 	public List<AppInfo> getAppInfos(Integer userId) {
 		return jdbcProcessor.findBean(AppInfo.class, "userId", userId);
