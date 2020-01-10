@@ -6,7 +6,7 @@
 
     全项目打包后(带前端页面)大小约：5.58M，非常精简。
 
-    前端采用Amaze UI，后端采用Coody Framework MVC
+    前端采用Amaze UI，后端采用Coody Framework MVC，数据库采用H2DB
 
 #### 基本使用
 
