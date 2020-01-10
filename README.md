@@ -12,7 +12,7 @@
 
 导入Maven项目，运行访问即可
 
-也可以Maven Install 构建Jar包，丢服务器运行。记得配置数据库目录。
+也可以Maven Install 构建Jar包，丢服务器运行。记得配置数据库。
 
 #### 随便丢几张图
 
@@ -41,7 +41,7 @@
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171756_649adeb7_1200611.png "6.png")
 
 
-### 8. 版权说明：
+### 版权说明：
 
     作者：Coody
     
