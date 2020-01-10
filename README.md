@@ -8,6 +8,8 @@
 
     前端采用Amaze UI，后端采用Coody Framework MVC，数据库采用H2DB
 
+    Coody Framework地址：[https://gitee.com/coodyer/Coody-Framework](https://gitee.com/coodyer/Coody-Framework)
+
 #### 基本使用
 
 导入Maven项目，运行访问即可
