@@ -36,8 +36,8 @@ public class ReduceController extends BaseController {
 	}
 
 	@PathBinding("/index.do")
-	@TextOut
-	public String index(String code, MinicatServletResponse response) {
-		return "Welcome to Short Web Site Service Platform.";
+	public void index(String code, MinicatServletResponse response) {
+		response.sendRedirect("/html/login.html");
+		;
 	}
 }
