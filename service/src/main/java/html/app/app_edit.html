@@ -116,8 +116,8 @@
 					return;
 				}
 				$("#status").val(data.datas.status);
-				if (data.datas.status == 1) {
-					$("#openPorjectCheck").attr("checked", true);
+				if (data.datas.status != 1) {
+					$("#openPorjectCheck").attr("checked", false);
 				}
 				$("#name").val(data.datas.name);
 				checkOpenPorject();

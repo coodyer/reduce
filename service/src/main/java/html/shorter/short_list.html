@@ -62,7 +62,8 @@
 							<div class="am-u-sm-12 am-u-md-6">
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
-										<button type="button" class="am-btn am-btn-default am-btn-success">
+										<button type="button" class="am-btn am-btn-default am-btn-success"
+											onclick="location.href='short_edit.html'">
 											<span class="am-icon-plus"></span> 新增
 										</button>
 									</div>
@@ -89,8 +90,9 @@
 											<th class="table-title">所属应用</th>
 											<th class="table-type">短链地址</th>
 											<th class="table-author am-hide-sm-only">原始地址</th>
-											<th class="table-author am-hide-sm-only">访问次数</th>
+											<th>访问</th>
 											<th class="table-date am-hide-sm-only">创建时间</th>
+											<th class="table-date am-hide-sm-only">状态</th>
 											<th class="table-set">操作</th>
 										</tr>
 										<tr id="lineTemplate" style="display: none">
@@ -98,7 +100,7 @@
 											<td>${id}</td>
 											<td>${appName}</td>
 											<td>${shortUrl}</td>
-											<td style="max-width:30%">${url}</td>
+											<td class="am-hide-sm-only">${url}</td>
 											<td>${frequency}</td>
 											<td class="am-hide-sm-only">${createTime}</td>
 											<td class="am-hide-sm-only">${status}</td>

@@ -118,7 +118,7 @@
 			if ($("#openPorjectCheck").is(':checked')) {
 				$("#openPorject").val(1);
 			} else {
-				$("#openPorject").val(2);
+				$("#openPorject").val(0);
 			}
 		}
 		function loadInfo(id) {
@@ -127,8 +127,8 @@
 					return;
 				}
 				$("#status").val(data.datas.status);
-				if (data.datas.status == 1) {
-					$("#openPorjectCheck").attr("checked", true);
+				if (data.datas.status != 1) {
+					$("#openPorjectCheck").attr("checked", false);
 				}
 				$("#url").val(data.datas.url);
 				checkOpenPorject();
@@ -153,7 +153,7 @@
 				}
 				$("#appList").html("");
 				for (var index in data.datas) {
-					var html="<option value='"+data.datas[index].id+"'>"+data.datas[index].name+"</option>";
+					var html = "<option value='" + data.datas[index].id + "'>" + data.datas[index].name + "</option>";
 					$("#appList").append(html);
 				}
 			}, 'json');
