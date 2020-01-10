@@ -59,6 +59,10 @@ public class ShortController extends BaseController {
 		if (shorter == null) {
 			return ResultCode.E_403_NOT_EXISTS.toMsgEntity();
 		}
+		Integer userId = getCurrentUserId();
+		if (shorter.getUserId() != userId.intValue()) {
+			return ResultCode.E_403_NOT_EXISTS.toMsgEntity();
+		}
 		return ResultCode.E_200_SUCCESS.toMsgEntity(shorter);
 	}
 
@@ -66,6 +70,16 @@ public class ShortController extends BaseController {
 	@PathBinding("/save")
 	@ParamsAdapt(JsonMealAdapter.class)
 	public Object save(ShortInfo info) {
+		if (!CommonUtil.isNullOrEmpty(info.getId())) {
+			ShortInfo shorter = shortService.getShortInfo(info.getId());
+			if (shorter == null) {
+				return ResultCode.E_403_NOT_EXISTS.toMsgEntity();
+			}
+			Integer userId = getCurrentUserId();
+			if (shorter.getUserId() != userId.intValue()) {
+				return ResultCode.E_403_NOT_EXISTS.toMsgEntity();
+			}
+		}
 		info.setUserId(getCurrentUserId());
 		Long code = shortService.saveShortInfo(info);
 		if (code < 1) {
