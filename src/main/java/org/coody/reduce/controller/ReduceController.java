@@ -39,6 +39,7 @@ public class ReduceController extends BaseController {
 		response.sendRedirect(info.getUrl());
 	}
 
+	
 	@PathBinding("/index.do")
 	public void index(String code, MinicatServletResponse response) {
 		response.sendRedirect("/html/login.html");
