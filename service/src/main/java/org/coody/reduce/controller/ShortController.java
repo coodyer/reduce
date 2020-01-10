@@ -89,6 +89,7 @@ public class ShortController extends BaseController {
 
 	@LoginCheck
 	@PathBinding("/page")
+	@ParamsAdapt(JsonMealAdapter.class)
 	public Object page(Pager pager, ShortInfo shorter) {
 		if (shorter == null) {
 			shorter = new ShortInfo();

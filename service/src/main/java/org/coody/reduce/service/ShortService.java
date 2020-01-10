@@ -35,7 +35,6 @@ public class ShortService {
 		return jdbcProcessor.insert(info);
 	}
 
-	@CacheWrite(key = CacheConstant.SHORT_PAGER, time = 5)
 	public Pager getPager(Pager pager, ShortInfo shorter) {
 		return jdbcProcessor.findPager(shorter, pager, "id", true);
 	}

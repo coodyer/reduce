@@ -2,6 +2,7 @@ package org.coody.reduce.domain;
 
 import java.util.Date;
 
+import org.coody.framework.jdbc.annotation.DBVague;
 import org.coody.framework.jdbc.entity.DBModel;
 
 @SuppressWarnings("serial")
@@ -11,6 +12,7 @@ public class ShortInfo extends DBModel {
 
 	private Integer userId;
 
+	@DBVague
 	private String url;
 
 	private Long frequency;
