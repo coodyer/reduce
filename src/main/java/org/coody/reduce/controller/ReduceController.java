@@ -4,7 +4,6 @@ import org.coody.framework.core.annotation.AutoBuild;
 import org.coody.framework.core.util.CommonUtil;
 import org.coody.framework.minicat.http.iface.MinicatServletResponse;
 import org.coody.framework.minicat.web.annotation.PathBinding;
-import org.coody.framework.minicat.web.annotation.TextOut;
 import org.coody.reduce.common.util.PECode;
 import org.coody.reduce.controller.base.BaseController;
 import org.coody.reduce.domain.ShortInfo;
