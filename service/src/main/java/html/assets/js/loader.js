@@ -1,7 +1,3 @@
-var config = (function ($) {
-	$.server = "http://localhost"
-	return $;
-})(window.config || {})
 
 $(function () {
 	loadHeader();
@@ -9,16 +5,16 @@ $(function () {
 });
 
 function loadHeader() {
-	$.get(config.server + "/html/common/header.html", function (html) {
+	$.get("/html/common/header.html", function (html) {
 		$("#header").html(html);
 	});
-	$.get(config.server + "/user/info", function (data) {
+	$.get("/user/info", function (data) {
 		$("#nickName").html(data.datas.email);
 	}, 'json');
 }
 
 function loadMenu() {
-	$.get(config.server + "/html/common/menu.html", function (html) {
+	$.get("/html/common/menu.html", function (html) {
 		$("#menu").html(html);
 	});
 }

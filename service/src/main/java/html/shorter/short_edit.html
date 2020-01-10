@@ -13,7 +13,7 @@
 	<link rel="icon" type="image/png" href="../assets/i/favicon.png">
 	<link rel="apple-touch-icon-precomposed" href="../assets/i/app-icon72x72@2x.png">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
-	<link rel="stylesheet" href="../assets/css/amazeui.min.css" />
+	<link rel="stylesheet" href="//cdn.staticfile.org/amazeui/2.7.2/css/amazeui.min.css" />
 	<link rel="stylesheet" href="../assets/css/admin.css">
 	<link rel="stylesheet" href="../assets/css/app.css">
 </head>
@@ -101,8 +101,8 @@
 			</div>
 		</div>
 	</div>
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/amazeui.min.js"></script>
+	<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+	<script src="//cdn.staticfile.org/amazeui/2.7.2/js/amazeui.min.js"></script>
 	<script src="../assets/js/app.js"></script>
 	<script src="../assets/js/loader.js"></script>
 	<script src="../assets/js/common.js"></script>
@@ -122,7 +122,7 @@
 			}
 		}
 		function loadInfo(id) {
-			$.get(config.server + "/short/info?id=" + id, function (data) {
+			$.get("/short/info?id=" + id, function (data) {
 				if (data.code != 200) {
 					return;
 				}
@@ -136,7 +136,7 @@
 			}, 'json');
 		}
 		function save() {
-			$.post(config.server + "/short/save",
+			$.post("/short/save",
 				form2JsonString($("#dataForm")), function (data) {
 					if (data.code == 200) {
 						history.back();
@@ -147,7 +147,7 @@
 				}, "json");
 		}
 		function loadApps() {
-			$.get(config.server + "/app/list", function (data) {
+			$.get("/app/list", function (data) {
 				if (data.code != 200) {
 					return;
 				}
