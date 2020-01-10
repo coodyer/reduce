@@ -18,27 +18,27 @@
 
 ###### 登录页面
 
-    ![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171636_d9d9093f_1200611.png "1.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171636_d9d9093f_1200611.png "1.png")
 
 ###### 注册页面
 
-    ![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171653_0950dff5_1200611.png "2.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171653_0950dff5_1200611.png "2.png")
 
 ###### 找回密码页面
 
-    ![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171709_80999218_1200611.png "3.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171709_80999218_1200611.png "3.png")
 
 ###### 用户首页
 
-    ![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171729_a20c28b9_1200611.png "4.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171729_a20c28b9_1200611.png "4.png")
 
 ###### 应用页面
 
-    ![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171743_a4f5b2c0_1200611.png "5.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171743_a4f5b2c0_1200611.png "5.png")
 
 ###### 短网址页面
 
-    ![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171756_649adeb7_1200611.png "6.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/171756_649adeb7_1200611.png "6.png")
 
 
 ### 8. 版权说明：
