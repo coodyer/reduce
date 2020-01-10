@@ -20,7 +20,7 @@ public class UserService {
 	}
 
 	@CacheWipe(key = CacheConstant.USER_INFO, fields = "user.email")
-	@CacheWipe(key = CacheConstant.USER_INFO, fields = "user.idemail")
+	@CacheWipe(key = CacheConstant.USER_INFO, fields = "user.id")
 	public Long modifyUserInfo(UserInfo user, String field) {
 		String sql = String.format("update %s set %s=? where email=? limit 1", JdbcUtil.getTableName(user.getClass()),
 				field);
