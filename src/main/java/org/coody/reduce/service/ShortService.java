@@ -18,7 +18,7 @@ public class ShortService {
 	@AutoBuild
 	JdbcProcessor jdbcProcessor;
 
-	@CacheWrite(key = CacheConstant.SHORT_INFO, fields = "id", time = 72000)
+	@CacheWrite(key = CacheConstant.SHORT_INFO, fields = "id", time = 60)
 	public ShortInfo getShortInfo(Long id) {
 		return jdbcProcessor.findBeanFirst(ShortInfo.class, "id", id);
 	}
@@ -37,6 +37,12 @@ public class ShortService {
 
 	public Pager getPager(Pager pager, ShortInfo shorter) {
 		return jdbcProcessor.findPager(shorter, pager, "id", true);
+	}
+
+	public Long addFrequency(Long id) {
+		String sql = String.format("update %s set frequency = frequency+1 where id=? limit 1",
+				JdbcUtil.getTableName(ShortInfo.class));
+		return jdbcProcessor.update(sql, id);
 	}
 
 	@CacheWipe(key = CacheConstant.SHORT_INFO, fields = "id")

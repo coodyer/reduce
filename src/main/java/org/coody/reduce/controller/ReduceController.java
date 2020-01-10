@@ -7,6 +7,7 @@ import org.coody.framework.minicat.web.annotation.PathBinding;
 import org.coody.reduce.common.util.PECode;
 import org.coody.reduce.controller.base.BaseController;
 import org.coody.reduce.domain.ShortInfo;
+import org.coody.reduce.queue.FrequencyQueue;
 import org.coody.reduce.service.ShortService;
 import org.coody.reduce.service.UserService;
 
@@ -17,6 +18,8 @@ public class ReduceController extends BaseController {
 	UserService userService;
 	@AutoBuild
 	ShortService shortService;
+	@AutoBuild
+	FrequencyQueue frequencyQueue;
 
 	@PathBinding("/{code}")
 	public void trigger(String code) {
@@ -31,6 +34,8 @@ public class ReduceController extends BaseController {
 		if (info == null || info.getStatus() != 1) {
 			return;
 		}
+		frequencyQueue.addFrequency(info.getId());
+
 		response.sendRedirect(info.getUrl());
 	}
 
