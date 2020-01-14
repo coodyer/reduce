@@ -18,7 +18,7 @@ public class PECode {
 	private static final char[] array = { 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g',
 			'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '8', '5', '2', '7', '3', '6', '4', '0', '9', '1',
 			'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X',
-			'C', 'V', 'B', 'N', 'M', '+', '-', '@', '!'};
+			'C', 'V', 'B', 'N', 'M', '+', '-', '@', '!' };
 
 	/**
 	 * @param number double类型的10进制数,该数必须大于0
@@ -67,8 +67,4 @@ public class PECode {
 		return -1;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(decode(encode(99999999L)));
-		System.out.println(encode(8746465L));
-	}
 }
