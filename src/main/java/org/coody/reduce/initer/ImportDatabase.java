@@ -55,21 +55,25 @@ public class ImportDatabase implements InitBeanFace {
 		SysThreadPool.THREAD_POOL.execute(new Runnable() {
 			@Override
 			public void run() {
-				List<Map<String, Object>> results = jdbcProcessor.query("show tables");
-				List<String> tables = new ArrayList<String>();
-				if (!CommonUtil.isNullOrEmpty(results)) {
-					for (Map<String, Object> map : results) {
-						tables.add(map.get("table_name").toString().toLowerCase());
+				try {
+					List<Map<String, Object>> results = jdbcProcessor.query("show tables");
+					List<String> tables = new ArrayList<String>();
+					if (!CommonUtil.isNullOrEmpty(results)) {
+						for (Map<String, Object> map : results) {
+							tables.add(map.get("table_name").toString().toLowerCase());
+						}
 					}
-				}
-				for (String table : INIT_DATABASE.keySet()) {
-					if (tables.contains(table)) {
-						continue;
+					for (String table : INIT_DATABASE.keySet()) {
+						if (tables.contains(table)) {
+							continue;
+						}
+						LogUtil.log.info("初始化数据表>>" + table);
+						jdbcProcessor.update(INIT_DATABASE.get(table));
 					}
-					LogUtil.log.info("初始化数据表>>" + table);
-					jdbcProcessor.update(INIT_DATABASE.get(table));
+				} finally {
+					is_finish = true;
 				}
-				is_finish = true;
+				
 			}
 		});
 
