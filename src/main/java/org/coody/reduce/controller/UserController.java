@@ -10,6 +10,7 @@ import org.coody.framework.minicat.web.adapter.JsonMealAdapter;
 import org.coody.framework.minicat.web.annotation.JsonOut;
 import org.coody.framework.minicat.web.annotation.ParamsAdapt;
 import org.coody.framework.minicat.web.annotation.PathBinding;
+import org.coody.reduce.common.annotation.LoginCheck;
 import org.coody.reduce.common.constants.CacheConstant;
 import org.coody.reduce.common.enm.ResultCode;
 import org.coody.reduce.common.entity.LoginEntity;
@@ -89,6 +90,7 @@ public class UserController extends BaseController {
 		return ResultCode.E_200_SUCCESS.toMsgEntity(token);
 	}
 
+	@LoginCheck
 	@PathBinding("/info")
 	public Object info() {
 		UserInfo user = userService.getUserInfo(getCurrentUserId());

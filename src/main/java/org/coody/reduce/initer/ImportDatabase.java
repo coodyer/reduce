@@ -68,4 +68,10 @@ public class ImportDatabase implements InitBeanFace {
 
 	}
 
+	public static void main(String[] args) {
+		for (String string : INIT_DATABASE.keySet()) {
+			System.out.println(INIT_DATABASE.get(string));
+
+		}
+	}
 }

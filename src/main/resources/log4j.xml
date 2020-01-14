@@ -35,7 +35,7 @@
 		<param name="File" value="reduce_info.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF8" />
-				<layout class="org.apache.log4j.PatternLayout">
+		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n" />
 		</layout>
@@ -50,7 +50,7 @@
 		<param name="File" value="reduce_warn.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF8" />
-				<layout class="org.apache.log4j.PatternLayout">
+		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n" />
 		</layout>
@@ -65,7 +65,7 @@
 		<param name="File" value="reduce_error.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF8" />
-				<layout class="org.apache.log4j.PatternLayout">
+		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="[%p %-d{HH:mm:ss} %t](%F:%L) %X{logFlag} ：%m%n" />
 		</layout>
@@ -78,7 +78,7 @@
 
 	<root>
 		<!--定义日志的最低输出级别 -->
-		<priority value="DEBUG" />
+		<priority value="INFO" />
 		<!--引用的日志记录器 -->
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="DEBUG" />
