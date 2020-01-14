@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.coody.framework.core.annotation.AutoBuild;
 import org.coody.framework.core.bean.InitBeanFace;
+import org.coody.framework.core.threadpool.SysThreadPool;
 import org.coody.framework.core.util.CommonUtil;
 import org.coody.framework.core.util.log.LogUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
@@ -18,7 +18,7 @@ public class ImportDatabase implements InitBeanFace {
 	@AutoBuild
 	JdbcProcessor jdbcProcessor;
 
-	public static AtomicLong input = new AtomicLong(0l);
+	public static boolean is_finish = false;
 
 	@SuppressWarnings("serial")
 	static final Map<String, String> INIT_DATABASE = new HashMap<String, String>() {
@@ -51,27 +51,27 @@ public class ImportDatabase implements InitBeanFace {
 
 	@Override
 	public void init() throws Exception {
-		List<Map<String, Object>> results = jdbcProcessor.query("show tables");
-		List<String> tables = new ArrayList<String>();
-		if (!CommonUtil.isNullOrEmpty(results)) {
-			for (Map<String, Object> map : results) {
-				tables.add(map.get("table_name").toString().toLowerCase());
+
+		SysThreadPool.THREAD_POOL.execute(new Runnable() {
+			@Override
+			public void run() {
+				List<Map<String, Object>> results = jdbcProcessor.query("show tables");
+				List<String> tables = new ArrayList<String>();
+				if (!CommonUtil.isNullOrEmpty(results)) {
+					for (Map<String, Object> map : results) {
+						tables.add(map.get("table_name").toString().toLowerCase());
+					}
+				}
+				for (String table : INIT_DATABASE.keySet()) {
+					if (tables.contains(table)) {
+						continue;
+					}
+					LogUtil.log.info("初始化数据表>>" + table);
+					jdbcProcessor.update(INIT_DATABASE.get(table));
+				}
+				is_finish = true;
 			}
-		}
-		for (String table : INIT_DATABASE.keySet()) {
-			if (tables.contains(table)) {
-				continue;
-			}
-			LogUtil.log.info("初始化数据表>>" + table);
-			jdbcProcessor.update(INIT_DATABASE.get(table));
-		}
+		});
 
-	}
-
-	public static void main(String[] args) {
-		for (String string : INIT_DATABASE.keySet()) {
-			System.out.println(INIT_DATABASE.get(string));
-
-		}
 	}
 }
