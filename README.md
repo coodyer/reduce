@@ -19,6 +19,76 @@ Coody Framework地址：[https://gitee.com/coodyer/Coody-Framework](https://gite
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0110/173922_5072b0fb_1200611.png "8.png")
 
+#### 更换数据库
+
+有好几位朋友来问我换mysql，介绍下换成mysql的方案
+1、引入mysql驱动（根据你mysql版本来）
+
+```
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.18</version>
+</dependency>
+```
+2、修改配置
+
+```
+coody.bean.dataSource.class=com.zaxxer.hikari.HikariDataSource
+coody.bean.dataSource.field.driverClassName=com.mysql.jdbc.Driver
+coody.bean.dataSource.field.jdbcUrl=jdbc\:mysql\://localhost:3306/reduce?useUnicode\=true&characterEncoding\=UTF-8&serverTimezone=GMT%2B8
+coody.bean.dataSource.field.username=reduce
+coody.bean.dataSource.field.password=Coody888!
+```
+3、导入数据表
+
+```
+CREATE TABLE `short_info` (
+  `id` bigint(32) NOT NULL AUTO_INCREMENT,
+  `frequency` bigint(32) NOT NULL DEFAULT 0,
+  `status` tinyint(4) DEFAULT '1',
+  `appId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) 
+);
+CREATE TABLE `user_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(32) DEFAULT NULL,
+  `password` varchar(40) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '1',
+  `createTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) ,
+  UNIQUE KEY `email_uk` (`email`) USING BTREE
+) ;
+CREATE TABLE `app_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32)  DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `unionId` varchar(32) DEFAULT NULL,
+  `createTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  `status` int(2) DEFAULT '0',
+  PRIMARY KEY (`id`) ,
+  UNIQUE KEY `app_uk` (`unionId`)  USING BTREE
+) ;
+CREATE TABLE `email_queue` (
+  `id` bigint(32) NOT NULL AUTO_INCREMENT,
+  `unionId` varchar(32) DEFAULT NULL,
+  `title` varchar(128) DEFAULT NULL,
+  `context` varchar(256) DEFAULT NULL,
+  `targeEmail` varchar(32) DEFAULT NULL,
+  `status` int(2) DEFAULT '0',
+  `createTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  `millisecond` bigint(32) DEFAULT NULL,
+  `updateTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+)
+
+```
+
+然后就可与愉快的使用MYSQL了
+
 #### 随便丢几张图
 
 ###### 登录页面
