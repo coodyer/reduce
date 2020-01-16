@@ -10,7 +10,6 @@ import org.coody.framework.core.util.date.DateUtils;
 import org.coody.framework.core.util.encrypt.EncryptUtil;
 import org.coody.framework.core.util.random.RandomUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
-import org.coody.framework.jdbc.annotation.Transacted;
 import org.coody.framework.jdbc.entity.Pager;
 import org.coody.framework.jdbc.entity.Where;
 import org.coody.framework.mail.entity.EmailSendConfig;
@@ -28,7 +27,6 @@ public class EmailService {
 	@AutoBuild
 	EmailSendConfig emailConfig;
 
-	@Transacted
 	public boolean sendEmail(EmailQueue queue) {
 
 		String sql = "update email_queue set status=1 where id=? limit 1";
