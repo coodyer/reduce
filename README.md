@@ -34,11 +34,15 @@ Coody Framework地址：[https://gitee.com/coodyer/Coody-Framework](https://gite
 2、修改配置
 
 ```
-coody.bean.dataSource.class=com.zaxxer.hikari.HikariDataSource
-coody.bean.dataSource.field.driverClassName=com.mysql.jdbc.Driver（8.0版本配置方式：com.mysql.cj.jdbc.Driver）
-coody.bean.dataSource.field.jdbcUrl=jdbc\:mysql\://localhost:3306/reduce?useUnicode\=true&characterEncoding\=UTF-8&serverTimezone=GMT%2B8
-coody.bean.dataSource.field.username=reduce
+
+coody.bean.dataSource.class=org.coody.framework.esource.ESource
+coody.bean.dataSource.field.driver=com.mysql.jdbc.Driver
+coody.bean.dataSource.field.url=jdbc\:mysql\://localhost:3306/reduce?useUnicode\=true&characterEncoding\=UTF-8&serverTimezone=GMT%2B8
+coody.bean.dataSource.field.user=reduce
 coody.bean.dataSource.field.password=Coody888!
+coody.bean.dataSource.field.maxPoolSize=64
+coody.bean.dataSource.field.minPoolSize=2
+coody.bean.dataSource.field.initialPoolSize=5
 ```
 3、导入数据表
 
