@@ -78,7 +78,7 @@
 
 	<root>
 		<!--定义日志的最低输出级别 -->
-		<priority value="INFO" />
+		<priority value="DEBUG" />
 		<!--引用的日志记录器 -->
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="DEBUG" />

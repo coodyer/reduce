@@ -8,6 +8,7 @@ import org.coody.framework.cache.annotation.CacheWrite;
 import org.coody.framework.core.annotation.AutoBuild;
 import org.coody.framework.core.util.CommonUtil;
 import org.coody.framework.jdbc.JdbcProcessor;
+import org.coody.framework.jdbc.annotation.Transacted;
 import org.coody.framework.jdbc.util.JdbcUtil;
 import org.coody.reduce.common.constants.CacheConstant;
 import org.coody.reduce.domain.AppInfo;
@@ -24,6 +25,7 @@ public class AppService {
 		return jdbcProcessor.findBeanFirst(AppInfo.class, "id", id);
 	}
 
+	@Transacted
 	@CacheWipe(key = CacheConstant.APP_LIST, fields = "app.userId")
 	@CacheWipe(key = CacheConstant.APP_INFO, fields = "app.id")
 	public Long saveAppInfo(AppInfo app) {
@@ -32,7 +34,7 @@ public class AppService {
 		}
 		return jdbcProcessor.updateByPriKey(app, "id");
 	}
-
+	@Transacted
 	@CacheWipe(key = CacheConstant.APP_LIST, fields = "app.userId")
 	@CacheWipe(key = CacheConstant.APP_INFO, fields = "app.id")
 	public Long delAppInfo(AppInfo app) {
