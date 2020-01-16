@@ -1,5 +1,7 @@
 # reduce短网址平台
 
+测试站地址：http://dev.icoody.cn/
+
 #### 技术说明
 
     本项目为Coody Framework+Minicat首秀，短网址服务平台。部署在服务器，使用短域名解析即可提供服务。
