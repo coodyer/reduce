@@ -35,19 +35,19 @@
 				<form class="am-form" id="dataForm" onsubmit="return false">
 					<fieldset>
 						<div class="am-form-group">
-							<input type="email" name="email" placeholder="输入电子邮件">
+							<input type="text" name="email" id="email" placeholder="输入电子邮件">
 						</div>
 						<div class="am-form-group">
 							<a style="float:right" href="javascript:sendCode()">发送验证码</a>
 						</div>
 						<div class="am-form-group">
-							<input type="text" name="code" placeholder="验证码">
+							<input type="text" name="code" placeholder="验证码" id="code">
 						</div>
 						<div class="am-form-group">
 							<br>
 						</div>
 						<div class="am-form-group">
-							<input type="password" name="password" placeholder="登录密码">
+							<input type="password" id="password" name="password" placeholder="登录密码">
 						</div>
 						<p>
 							<button type="button" onclick="register()" class="am-btn am-btn-default">注册</button>
