@@ -80,6 +80,13 @@ public class ShortController extends BaseController {
 				return ResultCode.E_403_NOT_EXISTS.toMsgEntity();
 			}
 		}
+		if (info.getAppId() == null) {
+			return ResultCode.E_1001_APP_EXISTS.toMsgEntity();
+		}
+		AppInfo app = appService.getAppInfo(info.getAppId());
+		if (app == null) {
+			return ResultCode.E_1001_APP_EXISTS.toMsgEntity();
+		}
 		info.setUserId(getCurrentUserId());
 		Long code = shortService.saveShortInfo(info);
 		if (code < 1) {

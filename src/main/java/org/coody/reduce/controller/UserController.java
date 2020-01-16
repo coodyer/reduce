@@ -53,6 +53,7 @@ public class UserController extends BaseController {
 		if (code < 1) {
 			return ResultCode.E_500_SYS_BUSY.toMsgEntity();
 		}
+		user.setId(code.intValue());
 		String token = JUUIDUtil.createUuid();
 		LoginEntity wrapper = new LoginEntity();
 		wrapper.setUserId(user.getId());
