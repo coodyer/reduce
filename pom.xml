@@ -14,7 +14,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<coody.version>${project.version}</coody.version>
-		<h2db.version>1.3.175</h2db.version>
+		<h2db.version>2.1.210</h2db.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<log4j.version>1.2.11</log4j.version>
 		<coody.version>alpha-1.5.5</coody.version>
